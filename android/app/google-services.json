@@ -1,0 +1,64 @@
+{
+  "project_info": {
+    "project_number": "75090174466",
+    "firebase_url": "https://center-for-technical-education.firebaseio.com",
+    "project_id": "center-for-technical-education",
+    "storage_bucket": "center-for-technical-education.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75090174466:android:0f02345c6dc25852",
+        "android_client_info": {
+          "package_name": "com.ashadhaz.cte"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75090174466-te7k28i6a7mh76evfhcjnipav89j1c3p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ashadhaz.cte",
+            "certificate_hash": "8b992e1e4fb3c95ac16fc909e2908ce9abc8c918"
+          }
+        },
+        {
+          "client_id": "75090174466-cpq3o5el9k3sqvhibu1kp8c0i8idhf0r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ashadhaz.cte",
+            "certificate_hash": "55fa03996b069cb27651cb11f36684344b5632d9"
+          }
+        },
+        {
+          "client_id": "75090174466-86l2md67hq0naae2dk5u01ipt64ovmij.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ashadhaz.cte",
+            "certificate_hash": "c6655b38474a5dc3a5f0c5da4f2ee0e6872da288"
+          }
+        },
+        {
+          "client_id": "75090174466-rlkcbt5n1rvbfeuk4kj8k4fbl5buh8uc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJzwQmtF6gdXsBKShTpWJqUK8jJimiM_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75090174466-rlkcbt5n1rvbfeuk4kj8k4fbl5buh8uc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
