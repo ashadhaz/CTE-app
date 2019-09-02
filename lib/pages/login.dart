@@ -86,7 +86,7 @@ class _LoginState extends State<Login> {
                 context, MaterialPageRoute(builder: (context) => Home(user)));
         }
       } else
-        _nonbits();
+          return wait();
       return user;
     } catch (e) {
       print(e.toString());
@@ -94,18 +94,21 @@ class _LoginState extends State<Login> {
     }
   }
 
-  _nonbits() {
-    return AlertDialog(
-      title: Text("Alert!"),
-      content: Text("Please sign in with your bits mail"),
-      actions: <Widget>[
-        FlatButton(
-          child: Text("Ok"),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        )
-      ],
+  wait() {
+    return Center(
+      child: CircularProgressIndicator(),
     );
+//    return AlertDialog(
+//      title: Text("Alert!"),
+//      content: Text("Please sign in with your bits mail"),
+//      actions: <Widget>[
+//        FlatButton(
+//          child: Text("Ok"),
+//          onPressed: () {
+//            Navigator.pop(context);
+//          },
+//        )
+//      ],
+//    );
   }
 }

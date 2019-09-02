@@ -114,6 +114,9 @@ class _CourseDetailsState extends State<CourseDetails> {
                   padding: const EdgeInsets.only(top: 6.0, left: 10),
                   child: Text(widget.desc, style: TextStyle(fontSize: 18)),
                 ),
+                SizedBox(
+                  height: 200,
+                )
               ],
             ),
           ),
@@ -123,6 +126,11 @@ class _CourseDetailsState extends State<CourseDetails> {
   }
 
   void _handleRegistration() async {
+
+    setState(() {
+      butText = 'R';
+    });
+
     SharedPreferences preferences = await SharedPreferences.getInstance();
     Firestore db = Firestore.instance;
 

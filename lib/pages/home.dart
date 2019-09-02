@@ -37,8 +37,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     print("im here");
 */
     await FirebaseAuth.instance.signOut();
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Login()));
-
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => Login()));
   }
 
   @override
@@ -66,7 +66,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
       ],
     ));*/
-    DefaultTabController(
+        DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
@@ -89,10 +89,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             )
           ],
         ),
-        body:
-            TabBarView(children: [_getCourses(), _myCourses()])
-          ,
-
+        body: TabBarView(children: [_getCourses(), _myCourses()]),
 
         //TabBarView(children: [_getCourses(), _myCourses()]),
       ),
