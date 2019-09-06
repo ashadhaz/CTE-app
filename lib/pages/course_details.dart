@@ -56,11 +56,11 @@ class _CourseDetailsState extends State<CourseDetails> {
         textColor: Colors.white,
         child: butText == "R"
             ? CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               )
             : Text(
                 butText,
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: 18),
               ),
       ),
       /*appBar: AppBar(
@@ -86,21 +86,16 @@ class _CourseDetailsState extends State<CourseDetails> {
             delegate: SliverChildListDelegate(
               [
                 Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Instructors:",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 12.0),
-                          child: Text(widget.instructors,
-                              style: TextStyle(fontSize: 18)),
-                        ),
-                      ]),
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "Instructors:",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12.0),
+                  child:
+                      Text(widget.instructors, style: TextStyle(fontSize: 18)),
                 ),
                 Padding(
                   padding:
@@ -126,7 +121,6 @@ class _CourseDetailsState extends State<CourseDetails> {
   }
 
   void _handleRegistration() async {
-
     setState(() {
       butText = 'R';
     });

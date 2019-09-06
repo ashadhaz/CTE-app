@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -43,30 +44,59 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return /*Scaffold(
-        body: CustomScrollView(
-      slivers: <Widget>[
-        SliverAppBar(
-          title: Text("CTE"),
-          floating: true,
-          bottom: TabBar(
-            tabs: [
-              Tab(
-                text: "Register",
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        body: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: 150,
+                child: AppBar(
+                  leading: IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    color: Colors.black,
+                    iconSize: 30,
+                  ),
+                  backgroundColor: Colors.white,
+                  centerTitle: true,
+                  title: Image.asset('./images/logo.png'),
+                  bottom: TabBar(
+                    tabs: [
+                      Tab(
+                        text: "Register",
+                      ),
+                      Tab(text: "My courses"),
+                    ],
+                    labelStyle: TextStyle(fontSize: 25),
+                    labelColor: Colors.black,
+                  ),
+                ),
               ),
-              Tab(text: "My courses"),
+              Container(
+                height: MediaQuery.of(context).size.height-170,
+                child: TabBarView(
+                  children: [
+                    _getCourses(),
+                    _myCourses(),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 160,
+              )
             ],
-            labelStyle: TextStyle(fontSize: 20),
-            controller: controller,
           ),
         ),
-        TabBarView(
-          children: [_getCourses(), _myCourses()],
+      ),
+    );
 
-        ),
-      ],
-    ));*/
-        DefaultTabController(
+    /*
+      DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
@@ -94,8 +124,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         //TabBarView(children: [_getCourses(), _myCourses()]),
       ),
     );
+    */
   }
 
+  ////////////////// UNTOUCHED //////////////////
+  /*
   _getCourses() {
     return ListView(
       children: <Widget>[
@@ -104,7 +137,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             builder: (context, snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
-                  return Center(child: CircularProgressIndicator());
+                  return Container(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(),
+                  );
                 default:
                   return Column(
                     children:
@@ -158,6 +194,95 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       ],
     );
   }
+   */
+  //////////////// EXPERIMENT //////////////
+  _getCourses() {
+    return ListView(
+      children: <Widget>[
+        StreamBuilder<QuerySnapshot>(
+            stream: Firestore.instance.collection('Courses').snapshots(),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.waiting:
+                  return Container(
+                    alignment: Alignment.center,
+                    child: CircularProgressIndicator(),
+                  );
+                default:
+                  return Column(
+                    children:
+                        snapshot.data.documents.map((DocumentSnapshot snap) {
+                      // _listCourses(snap);
+                      return Hero(
+                        tag: snap["Name"],
+                        child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => CourseDetails(
+                                        courseImg: imgSrc,
+                                        name: snap["Name"],
+                                        instructors: snap["Instructors"],
+                                        desc: snap["Overview"],
+                                        user: widget.user,
+                                      )));
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.all(5),
+                              child: Card(
+                                  elevation: 10.0,
+                                  child: Container(
+                                    height: 450,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Container(
+                                          height: 200,
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    "./images/flut.jpg")),
+                                            borderRadius: BorderRadius.only(
+                                                topLeft: Radius.circular(10),
+                                                topRight: Radius.circular(10)),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.all(10),
+                                          child: Text(
+                                            snap["Name"],
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 27,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 10, right: 10),
+                                          child: Text(
+                                            snap["Overview"],
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 7,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  )),
+                            )),
+                      );
+                    }).toList(),
+                  );
+              }
+            }),
+      ],
+    );
+  }
 
   _myCourses() {
     return ListView(
@@ -174,10 +299,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(Colors.blue)));
             } else {
-              //return GridView(
-              //gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //  crossAxisCount: 1),
-              //shrinkWrap: true,
               return Column(
                 children: snapshot.data.documents
                     .map<Widget>((DocumentSnapshot snap) {

@@ -9,6 +9,7 @@ class Landing extends StatelessWidget {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
+
           children: <Widget>[
             AppBar(
               backgroundColor: Colors.white,
@@ -90,18 +91,23 @@ class Landing extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   head("Courses"),
-                  body("Our longest running and most successful venture, courses is a great resource to expand your knowledge. Courses on a very wide array of topics ranging from music theory to robotics are taken by highly skilled and dedicated instructors from BITS goa who wish to pass on their knowledge and actively participate in the growth of campus tech culture"),
+                  body(
+                      "Our longest running and most successful venture, courses is a great resource to expand your knowledge. Courses on a very wide array of topics ranging from music theory to robotics are taken by highly skilled and dedicated instructors from BITS goa who wish to pass on their knowledge and actively participate in the growth of campus tech culture"),
                   head("AAP"),
-                  body("A relatively new initiative, the Academic Assistance Programme has been a huge success in helping the students of BITS Goa grasp concepts, cover difficult problems and achieve excellence in class courses. The initiative empowers students to ask doubts and encounter problems under the guidance of highly motivated student mentors"),
+                  body(
+                      "A relatively new initiative, the Academic Assistance Programme has been a huge success in helping the students of BITS Goa grasp concepts, cover difficult problems and achieve excellence in class courses. The initiative empowers students to ask doubts and encounter problems under the guidance of highly motivated student mentors"),
                   head("Tech Weekend"),
-                  body("To promote the technical culture on campus, CTE, in collaboration with other technical clubs on campus, organizes a weekend filled with hackathons and competitions. These events range from fields like finance to aero-space and helps students relax while encouraging healthy competition"),
+                  body(
+                      "To promote the technical culture on campus, CTE, in collaboration with other technical clubs on campus, organizes a weekend filled with hackathons and competitions. These events range from fields like finance to aero-space and helps students relax while encouraging healthy competition"),
                   head("Schooling"),
-                  body("Breaking boundaries and expectations as we expand beyond the walls of our campus and take up workshops and educational seminars in nearby schools, providing students with an early insight and piquing their interest in the current scenario of the technical world and it’s many opportunities"),
+                  body(
+                      "Breaking boundaries and expectations as we expand beyond the walls of our campus and take up workshops and educational seminars in nearby schools, providing students with an early insight and piquing their interest in the current scenario of the technical world and it’s many opportunities"),
                   head("CCE"),
-                  body("CTE has extended it’s reach beyond technical courses as it introduces cultural courses like music and drama to it’s catalogue. This new initiative has seen wide ranging support and is bound to reach new heights as more and more clubs and departments join the initiative"),
+                  body(
+                      "CTE has extended it’s reach beyond technical courses as it introduces cultural courses like music and drama to it’s catalogue. This new initiative has seen wide ranging support and is bound to reach new heights as more and more clubs and departments join the initiative"),
                   head("Project Fundings"),
-                  body("At Center for Technical Education, we believing in lending active support to creativity and innovation. CTE funds upto 10 projects with support upto Rs 40,000 to help student teams contribute to the development of technical culture on campus."),
-
+                  body(
+                      "At Center for Technical Education, we believing in lending active support to creativity and innovation. CTE funds upto 10 projects with support upto Rs 40,000 to help student teams contribute to the development of technical culture on campus."),
                 ],
               ),
             ),
@@ -125,13 +131,12 @@ class Landing extends StatelessWidget {
                 color: Colors.green,
               ),
             ),
+            team("Chinu", "Pranav"),
+            team("Aditya", "Bhavyam"),
+            team("anshuman", "PranavP"),
             Padding(
-              padding: EdgeInsets.only(top: 20, left: 15, right: 15),
-              child: Row(
-                children: <Widget>[
-                  avatar("Chinu")
-                ],
-              ),
+              padding: EdgeInsets.fromLTRB(16, 20, 16, 20),
+              child: Image.asset("./images/2019.jpg"),
             )
           ],
         ),
@@ -139,7 +144,7 @@ class Landing extends StatelessWidget {
     );
   }
 
-  Widget head(String head){
+  Widget head(String head) {
     return Padding(
       padding: const EdgeInsets.all(14.0),
       child: Text(
@@ -149,9 +154,9 @@ class Landing extends StatelessWidget {
     );
   }
 
-  Widget body(String t){
+  Widget body(String t) {
     return Padding(
-      padding: const EdgeInsets.only(top:8.0, left: 14, bottom: 10),
+      padding: const EdgeInsets.only(top: 8.0, left: 14, bottom: 10),
       child: Text(
         "Our longest running and most successful venture, courses is a great resource to expand your knowledge. Courses on a very wide array of topics ranging from music theory to robotics are taken by highly skilled and dedicated instructors from BITS goa who wish to pass on their knowledge and actively participate in the growth of campus tech culture",
         style: TextStyle(color: Colors.black, fontSize: 20),
@@ -159,10 +164,31 @@ class Landing extends StatelessWidget {
     );
   }
 
-  Widget avatar(String s){
-    return CircleAvatar(
-      child: Image.asset(s + ".jpg"),
+  Widget avatar(String s) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Container(
+        height: 150,
+        width: 150,
+        padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            image: DecorationImage(image: AssetImage('./images/' +s + '.jpg'), fit: BoxFit.fill),
+          ),
+      ),
     );
   }
 
+  Widget team(String s1, String s2){
+    return Padding(
+      padding: EdgeInsets.only(top: 20, left: 15, right: 15),
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[avatar(s1), avatar(s2)],
+        ),
+      ),
+    );
+  }
 }
