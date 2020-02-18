@@ -31,12 +31,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   }
 
   _checkPh() async {
-    /*SharedPreferences preferences = await SharedPreferences.getInstance();
+    SharedPreferences preferences = await SharedPreferences.getInstance();
 
     preferences.setString('phno', "");
     preferences.setString('ID', "");
     print("im here");
-*/
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => Login()));
@@ -47,52 +46,41 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 150,
-                child: AppBar(
-                  leading: IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    color: Colors.black,
-                    iconSize: 30,
-                  ),
-                  backgroundColor: Colors.white,
-                  centerTitle: true,
-                  title: Image.asset('./images/logo.png'),
-                  bottom: TabBar(
-                    tabs: [
-                      Tab(
-                        text: "Register",
-                      ),
-                      Tab(text: "My courses"),
-                    ],
-                    labelStyle: TextStyle(fontSize: 25),
-                    labelColor: Colors.black,
-                  ),
-                ),
+        appBar: AppBar(
+          leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          color: Colors.black,
+          iconSize: 30,
+        ),
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.lock_open, color: Colors.black,), onPressed: _checkPh,)
+          ],
+          backgroundColor: Colors.white,
+          centerTitle: true,
+          title: Image.asset('./images/logo.png'),
+          bottom: TabBar(
+            tabs: [
+              Tab(
+                text: "Register",
               ),
-              Container(
-                height: MediaQuery.of(context).size.height-170,
-                child: TabBarView(
-                  children: [
-                    _getCourses(),
-                    _myCourses(),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 160,
-              )
+              Tab(text: "My courses"),
             ],
+            labelStyle: TextStyle(fontSize: 25),
+            labelColor: Colors.black,
           ),
         ),
-      ),
+        body: TabBarView(
+                children: [
+                  _getCourses(),
+                  _myCourses(),
+                ],
+              ),
+
+        ),
+
     );
 
     /*
@@ -260,7 +248,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              left: 10, right: 10),
+                                              left: 10, right: 10, bottom: 10),
                                           child: Text(
                                             snap["Overview"],
                                             style: TextStyle(
@@ -268,7 +256,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               fontSize: 20,
                                             ),
                                             overflow: TextOverflow.ellipsis,
-                                            maxLines: 7,
+                                            maxLines: 6,
+                                            softWrap: true,
                                           ),
                                         ),
                                       ],
@@ -307,6 +296,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   return Padding(
                     padding: EdgeInsets.all(5),
                     child: Card(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       elevation: 10.0,
                       child: Stack(
                         children: <Widget>[

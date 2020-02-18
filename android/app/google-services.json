@@ -15,23 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "75090174466-te7k28i6a7mh76evfhcjnipav89j1c3p.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ashadhaz.cte",
-            "certificate_hash": "8b992e1e4fb3c95ac16fc909e2908ce9abc8c918"
-          }
-        },
-        {
-          "client_id": "75090174466-cpq3o5el9k3sqvhibu1kp8c0i8idhf0r.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ashadhaz.cte",
-            "certificate_hash": "55fa03996b069cb27651cb11f36684344b5632d9"
-          }
-        },
-        {
-          "client_id": "75090174466-86l2md67hq0naae2dk5u01ipt64ovmij.apps.googleusercontent.com",
+          "client_id": "75090174466-12k10835478u2otqep0ei91egi9bmigf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.ashadhaz.cte",
